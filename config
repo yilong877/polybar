@@ -1,0 +1,326 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+
+[colors]
+;set polybar background color, use argb
+background = #3c3d3c3b
+foreground = #b6a49b
+nord8 = #88c0d0
+base = #b6a49b
+warning = #ffff00
+urgent = #ff0000
+
+[bar/basebar]
+monitor = ${env:MONITOR:}
+;monitor-fallback = DP-0
+;polybar postion
+bottom = true
+;polybar width
+width = 100%
+;polybar height
+height = 30
+;polybar radius
+radius = 0
+;modules-center options
+fixed-center = false
+enable-ipc = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+;line-size = 3
+;line-color = #f00
+
+border-top-size = 2
+border-bottom-size = 0
+border-left-size = 6
+border-right-size = 6
+border-color = #00000000
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = fixed:pixelsize=14;4
+font-1 = FontAwesome:pixelsize=16;4
+font-2 = Font Awesome 5 Free Solid:pixelsize=14;4
+font-3 = Material Design Icons Desktop:pixelsize=18;4
+
+modules-left = i3
+modules-center =
+modules-right = cpu memory temperature filesystem pacman wired-network wireless-network battery date
+
+;system tray postion
+tray-position = right
+tray-padding = 3
+tray-background = ${colors.background}
+tray-scale = 1.0
+tray-maxsize = 20
+
+wm-restack = i3
+override-redirect = false
+
+scroll-up = i3wm-wsprev
+scroll-down = i3wm-wsnext
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+enable-click = true
+strip-wsnumbers = true
+index-sort = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
+format = <label-state> <label-mode>
+
+label-mod = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
+
+label-focused = %name%
+label-focused-foreground = #ffcb00
+label-focused-background = #008cff
+label-focused-padding = 2
+
+label-unfocused = %name%
+label-unfocused-padding = 2
+
+label-visible = %name%
+label-visible-padding = 2
+
+label-urgent = %name%
+label-urgent-foreground = #ffcb00
+label-urgent-background = #bd2c40
+label-urgent-padding = 2
+
+
+[module/test]
+type = custom/script
+interval = 3
+exec = echo 󰣇
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+label-active = 1
+label-padding-left = 1
+label-padding-right = 0
+
+
+[module/wired-network]
+type = internal/network
+interface = eno2
+interval = 2
+
+format-connected = <label-connected>
+format-connected-prefix = " "
+format-connected-prefix-foreground = #2aa198
+label-connected = %local_ip% (%linkspeed%)
+label-connected-background = ${colors.background}
+label-connected-foreground = ${colors.foreground}
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = " "
+format-disconnected-prefix-foreground = #e54848
+label-disconnected = Disconnected
+label-disconnected-background = ${colors.background}
+label-disconnected-foreground = ${colors.foreground}
+
+
+[module/wireless-network]
+type = internal/network
+interface = wlo1
+interval = 2
+
+format-connected = <label-connected>
+format-connected-prefix = " "
+format-connected-prefix-foreground = #1d953f
+label-connected = %essid%
+label-connected-background = ${colors.background}
+label-connected-foreground = ${colors.foreground}
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = " "
+format-disconnected-prefix-foreground = #e54848
+label-disconnected = No Wi-Fi
+label-disconnected-background = ${colors.background}
+label-disconnected-foreground = ${colors.foreground}
+
+
+[module/pacman]
+type = custom/script
+exec = checkupdates 2>/dev/null | wc -l
+interval = 3600
+label-active = 3
+
+format-prefix = " "
+format-prefix-foreground = #ffa1cd
+
+
+[module/filesystem]
+type = internal/fs
+interval = 1
+fixed-values = true
+
+mount-0 = /
+
+format-mounted = <label-mounted>
+
+label-mounted =  %free%
+
+[module/cpu]
+type = internal/cpu
+internal = 0.5
+
+format = <ramp-load> <label>
+
+ramp-load-0 = 
+ramp-load-0-foreground = ${colors.base}
+
+ramp-load-1 = 
+ramp-load-1-foreground = ${colors.warning}
+
+ramp-load-2 = 
+ramp-load-2-foreground = ${colors.urgent}
+
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 1
+
+format = <ramp-used> <label>
+label = %gb_used%/%gb_free%
+
+ramp-used-0 = 
+ramp-used-0-foreground = ${colors.base}
+
+ramp-used-1 = 
+ramp-used-1-foreground = ${colors.warning}
+
+ramp-used-2 = 
+ramp-used-2-foreground = ${colors.urgent}
+
+
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+; Default: 1.0
+interval = 1.0
+
+; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %a, %d %b
+
+; Optional time format
+time = %H:%M
+
+; if `date-alt` or `time-alt` is defined, clicking
+; the module will toggle between formats
+;date-alt = %a, %d %b %Y
+;time-alt = %H:%M:%S
+label = %date% %time%
+format-prefix = " "
+
+[module/temperature]
+type = internal/temperature
+interval = 1
+thermal-zone = 0
+base-temperature = 50
+warn-temperature = 85
+
+;format
+format = <ramp> <label>
+format-warn = <label-warn>
+format-warn-background = ${colors.foreground}
+
+label-warn =  %temperature-c%
+label-warn-padding = 1
+label-warn-foreground = ${colors.urgent}
+label-warn-background = ${colors.foreground}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+
+
+ramp-0-foreground = ${colors.nord8}
+ramp-1-foreground = ${colors.nord8}
+ramp-2-foreground = ${colors.base}
+ramp-3-foreground = ${colors.base}
+ramp-4-foreground = ${colors.warning}
+
+
+[module/battery]
+type = internal/battery
+full-at = 100
+battery = BAT0
+adapter = AC0
+poll-interval = 3
+
+format-charging = <animation-charging> <label-charging>
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = #afaf00
+animation-charging-framerate = 750
+
+format-discharging = <ramp-capacity> <label-discharging>
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = #cb4b16
+
+label-full =  %percentage%%
+label-full-foreground = #00ff00
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
