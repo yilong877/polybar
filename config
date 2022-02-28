@@ -21,7 +21,6 @@
 ;set polybar background color, use argb
 background = #3c3d3c3b
 foreground = #b6a49b
-nord8 = #88c0d0
 base = #b6a49b
 warning = #ffff00
 urgent = #ff0000
@@ -194,7 +193,6 @@ fixed-values = true
 mount-0 = /
 
 format-mounted = <label-mounted>
-
 label-mounted =  %free%
 
 [module/cpu]
@@ -276,8 +274,8 @@ ramp-3 = 
 ramp-4 = 
 
 
-ramp-0-foreground = ${colors.nord8}
-ramp-1-foreground = ${colors.nord8}
+ramp-0-foreground = #88c0d0
+ramp-1-foreground = #88c0d0
 ramp-2-foreground = ${colors.base}
 ramp-3-foreground = ${colors.base}
 ramp-4-foreground = ${colors.warning}
