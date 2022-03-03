@@ -205,10 +205,13 @@ ramp-load-0 = 
 ramp-load-0-foreground = ${colors.base}
 
 ramp-load-1 = 
-ramp-load-1-foreground = ${colors.warning}
+ramp-load-1-foreground = ${colors.base}
 
 ramp-load-2 = 
-ramp-load-2-foreground = ${colors.urgent}
+ramp-load-2-foreground = ${colors.warning}
+
+ramp-load-3 = 
+ramp-load-3-foreground = ${colors.urgent}
 
 label = %percentage:2%%
 
@@ -223,11 +226,13 @@ ramp-used-0 = 
 ramp-used-0-foreground = ${colors.base}
 
 ramp-used-1 = 
-ramp-used-1-foreground = ${colors.warning}
+ramp-used-1-foreground = ${colors.base}
 
 ramp-used-2 = 
-ramp-used-2-foreground = ${colors.urgent}
+ramp-used-2-foreground = ${colors.warning}
 
+ramp-used-3 = 
+ramp-used-3-foreground = ${colors.urgent}
 
 [module/date]
 type = internal/date
@@ -260,7 +265,7 @@ warn-temperature = 85
 ;format
 format = <ramp> <label>
 format-warn = <label-warn>
-format-warn-background = ${colors.foreground}
+format-warn-background = ${colors.background}
 
 label-warn =  %temperature-c%
 label-warn-padding = 1
@@ -277,8 +282,10 @@ ramp-4 = 
 ramp-0-foreground = #88c0d0
 ramp-1-foreground = #88c0d0
 ramp-2-foreground = ${colors.base}
-ramp-3-foreground = ${colors.base}
-ramp-4-foreground = ${colors.warning}
+ramp-3-foreground = ${colors.warning}
+ramp-3-background = ${colors.background}
+ramp-4-foreground = ${colors.urgent}
+ramp-4-background = ${colors.background}
 
 
 [module/battery]
