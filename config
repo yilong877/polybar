@@ -178,7 +178,7 @@ label-disconnected-foreground = ${colors.foreground}
 [module/pacman]
 type = custom/script
 exec = checkupdates 2>/dev/null | wc -l
-interval = 3600
+interval = 600
 label-active = 3
 
 format-prefix = " "
