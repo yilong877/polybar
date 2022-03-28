@@ -19,15 +19,13 @@
 
 [colors]
 ;set polybar background color, use argb
-background = #3c3d3c3b
+background = #003d3c3b
 foreground = #b6a49b
 base = #b6a49b
 warning = #ffff00
 urgent = #ff0000
 
 [bar/basebar]
-monitor = ${env:MONITOR:}
-;monitor-fallback = DP-0
 ;polybar postion
 bottom = true
 ;polybar width
@@ -40,13 +38,16 @@ radius = 0
 fixed-center = false
 enable-ipc = true
 
+dpi-x = 96
+dpi-y = 96
+
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 ;line-size = 3
 ;line-color = #f00
 
-border-top-size = 2
+border-top-size = 0
 border-bottom-size = 0
 border-left-size = 6
 border-right-size = 6
@@ -59,9 +60,26 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = fixed:pixelsize=14;4
-font-1 = FontAwesome:pixelsize=16;4
-font-2 = Font Awesome 5 Free Solid:pixelsize=14;4
+font-1 = FontAwesome:pixelsize=15;4
+font-2 = Font Awesome 5 Free Solid:pixelsize=13;4
 font-3 = Material Design Icons Desktop:pixelsize=18;4
+
+wm-restack = i3
+override-redirect = false
+
+scroll-up = i3wm-wsprev
+scroll-down = i3wm-wsnext
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/mainbar]
+inherit = bar/basebar
+
+# monitor
+monitor = ${env:MONITOR:}
+monitor-fallback = DP-0
+
 
 modules-left = i3
 modules-center =
@@ -74,14 +92,21 @@ tray-background = ${colors.background}
 tray-scale = 1.0
 tray-maxsize = 20
 
-wm-restack = i3
-override-redirect = false
 
-scroll-up = i3wm-wsprev
-scroll-down = i3wm-wsnext
+[bar/secondbar]
+inherit = bar/basebar
 
-cursor-click = pointer
-cursor-scroll = ns-resize
+#monitor
+monitor = ${env:MONITOR:}
+monitor-fallback = HDMI-0
+
+modules-left = i3
+modules-center =
+modules-right = cpu memory temperature filesystem pacman date
+
+;system tray postion
+tray-position = none
+
 
 [module/i3]
 type = internal/i3
@@ -326,6 +351,6 @@ screenchange-reload = true
 
 [global/wm]
 margin-top = 0
-margin-bottom = 0
+margin-bottom = 2
 
 ; vim:ft=dosini
