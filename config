@@ -19,7 +19,7 @@
 
 [colors]
 ;set polybar background color, use argb
-background = #003d3c3b
+background = #9d3d3c3b
 foreground = #b6a49b
 base = #b6a49b
 warning = #ffff00
@@ -61,7 +61,7 @@ module-margin-right = 2
 
 font-0 = fixed:pixelsize=14;4
 font-1 = FontAwesome:pixelsize=15;4
-font-2 = Font Awesome 5 Free Solid:pixelsize=13;4
+font-2 = Font Awesome 5 Free Solid:style=Solid:pixelsize=13;4
 font-3 = Material Design Icons Desktop:pixelsize=18;4
 
 wm-restack = i3
@@ -115,17 +115,6 @@ enable-click = true
 strip-wsnumbers = true
 index-sort = true
 
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 7;
-ws-icon-7 = 8;
-ws-icon-8 = 9;
-ws-icon-9 = 10;
-
 format = <label-state> <label-mode>
 
 label-mod = %mode%
@@ -155,7 +144,7 @@ interval = 3
 exec = echo 󰣇
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
-label-active = 1
+label-active-font = 1
 label-padding-left = 1
 label-padding-right = 0
 
@@ -204,16 +193,18 @@ label-disconnected-foreground = ${colors.foreground}
 type = custom/script
 exec = checkupdates 2>/dev/null | wc -l
 interval = 600
-label-active = 3
+label-active-font = 3
 
 format-prefix = " "
+;format-prefix = " "
 format-prefix-foreground = #ffa1cd
 
 
 [module/filesystem]
 type = internal/fs
-interval = 1
+intervalk= 1
 fixed-values = true
+label-active-font = 2
 
 mount-0 = /
 
@@ -224,7 +215,7 @@ label-mounted =  %free%
 type = internal/cpu
 internal = 0.5
 
-format = <ramp-load> <label>
+format = <ramp-load><label>
 
 ramp-load-0 = 
 ramp-load-0-foreground = ${colors.base}
