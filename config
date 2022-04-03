@@ -211,6 +211,7 @@ mount-0 = /
 format-mounted = <label-mounted>
 label-mounted =  %free%
 
+
 [module/cpu]
 type = internal/cpu
 internal = 0.5
@@ -219,17 +220,15 @@ format = <ramp-load><label>
 
 ramp-load-0 = 
 ramp-load-0-foreground = ${colors.base}
-
 ramp-load-1 = 
 ramp-load-1-foreground = ${colors.base}
-
 ramp-load-2 = 
 ramp-load-2-foreground = ${colors.warning}
-
 ramp-load-3 = 
 ramp-load-3-foreground = ${colors.urgent}
 
 label = %percentage:2%%
+
 
 [module/memory]
 type = internal/memory
@@ -240,13 +239,10 @@ label = %gb_used%/%gb_free%
 
 ramp-used-0 = 
 ramp-used-0-foreground = ${colors.base}
-
 ramp-used-1 = 
 ramp-used-1-foreground = ${colors.base}
-
 ramp-used-2 = 
 ramp-used-2-foreground = ${colors.warning}
-
 ramp-used-3 = 
 ramp-used-3-foreground = ${colors.urgent}
 
@@ -338,7 +334,7 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;pseudo-transparency = false
+pseudo-transparency = true
 
 [global/wm]
 margin-top = 0

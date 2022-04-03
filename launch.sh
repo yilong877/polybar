@@ -8,4 +8,3 @@ if [ $monitor_counter -ne 1 ]; then
 else
     MONITOR=DP-0 polybar mainbar --config=$HOME/.config/i3/polybar/config &
 fi
-# polybar basebar --config=$HOME/.config/i3/polybar/config &
